@@ -21,21 +21,19 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/horarios" element={<Schedule />} />
-            <Route path="/profesores" element={<Professors />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/info" element={<Info />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AuthProvider>
-      </BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/horarios" element={<Schedule />} />
+          <Route path="/profesores" element={<Professors />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
