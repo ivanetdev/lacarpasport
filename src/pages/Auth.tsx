@@ -26,7 +26,7 @@ export default function Auth() {
         toast.success("¡Bienvenido de vuelta!");
         navigate("/dashboard");
       } else {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -35,6 +35,16 @@ export default function Auth() {
           },
         });
         if (error) throw error;
+        // Insertar perfil en la tabla profiles si el usuario se ha creado
+        if (data?.user) {
+          await supabase.from("profiles").insert([
+            {
+              user_id: data.user.id,
+              full_name: fullName,
+              // Puedes añadir más campos si tu tabla los tiene
+            }
+          ]);
+        }
         toast.success("¡Cuenta creada! Revisa tu email para confirmar.");
       }
     } catch (err: any) {
